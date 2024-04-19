@@ -1,0 +1,166 @@
+body {
+	background-color: coral;
+	user-select: none;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#controls-canvas-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	color: black;
+	background-color: white;
+	border: 2px solid black;
+	height: calc(100dvh - 3rem - 4px); /* 100dvh - 3rem (paddings) - 4px (borders) */
+	box-shadow: 0px 1px 4px black;
+}
+
+#controls-block,
+#controls-block-2 {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	height: fit-content;
+	padding: 1rem;
+	text-align: center;
+	border: 2px solid black;
+	box-shadow: inset 0px 0px 4px black;
+	background-color: #444;
+}
+
+#control-canvas-name-wrapper,
+#control-canvas-width-wrapper,
+#control-canvas-height-wrapper,
+#control-canvas-color-wrapper,
+#control-recent-colors-wrapper {
+	display: grid;
+	padding: 1rem;
+
+	background-color: #222;
+	color: white;
+	border: 1px solid black;
+	box-shadow: 0px 1px 3px black;
+}
+
+#control-canvas-name {
+	text-align: center;
+}
+
+#control-canvas-width,
+#control-canvas-height,
+#control-canvas-color {
+	cursor: pointer;
+	align-self: center;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+}
+
+#control-canvas-name-wrapper > label,
+#control-canvas-width-wrapper > label,
+#control-canvas-height-wrapper > label,
+#control-canvas-color-wrapper > label {
+	align-self: center;
+}
+
+.control-btns-wrapper {
+	display: grid;
+	gap: 0.5rem;
+}
+
+#control-canvas-save,
+#control-canvas-view,
+#control-canvas-reset,
+#control-canvas-colorsample,
+#control-canvas-eraser {
+	align-self: center;
+	padding: 0.5rem 1rem;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 0.25rem;
+	cursor: pointer;
+	box-shadow: 0px 1px 4px black;
+}
+
+#control-canvas-save:hover,
+#control-canvas-view:hover,
+#control-canvas-reset:hover,
+#control-canvas-colorsample:hover,
+#control-canvas-eraser:hover {
+	box-shadow: inset 0px 0px 3px 1px black;
+}
+
+#control-recent-colors {
+	display: flex;
+	padding: 5px;
+	gap: 5px;
+	min-height: 15px;
+	border: 1px solid black;
+	align-items: center;
+	height: fit-content;
+}
+
+#canvas {
+	height: 100%;
+	overflow: auto;
+	border: 1px solid black;
+	box-shadow: inset 0px 0px 4px;
+	background-color: #ede;
+}
+
+.canvas-pixel-row {
+	display: flex;
+	width: max-content;
+}
+
+.canvas-pixel {
+	border: 3px #efd7f7;
+	border-style: groove;
+	height: 10px;
+	width: 10px;
+	cursor: pointer;
+	background-color: white;
+}
+
+#saved-projects-block {
+	height: fit-content;
+	width: fit-content;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	color: white;
+}
+
+#project-wrapper {
+	display: grid;
+	background-color: #444;
+	box-shadow: 0px 2px 6px black;
+	border: 1px solid black;
+	border-radius: 0.25rem;
+}
+
+#project-title {
+	text-align: center;
+	border-bottom: 1px solid black;
+	margin: 0;
+	padding: 0.5rem;
+	background-color: #222;
+}
+
+#project-output {
+	text-align: center;
+	margin: 0.5rem;
+	border: 2px solid black;
+}
+
+#project-downloadBtn,
+#project-removeBtn {
+	padding: 0.5rem;
+	background-color: white;
+	margin: 0.5rem;
+	margin-top: 0;
+	border-radius: 0.25rem;
+	box-shadow: 0px 1px 3px black;
+}

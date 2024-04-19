@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Pixel Art</title>
+		<link
+			rel="stylesheet"
+			href="/public/css/index.css" />
+		<script src="/public/js/index.js"></script>
+	</head>
+	<body>
+		<div id="controls-canvas-wrapper">
+			<div id="controls-block">
+				<div class="control-btns-wrapper">
+					<button
+						type="reset"
+						id="control-canvas-save">
+						Save current
+					</button>
+
+					<button id="control-canvas-view">View saved</button>
+				</div>
+
+				<div id="control-canvas-name-wrapper">
+					<label for="control-canvas-name">Project name:</label>
+					<input
+						type="text"
+						id="control-canvas-name"
+						placeholder="Enter project name to save" />
+				</div>
+
+				<div id="control-canvas-width-wrapper">
+					<label for="control-canvas-width">Canvas width: <span id="canvas-width-label-val"></span></label>
+					<input
+						type="range"
+						id="control-canvas-width"
+						min="4"
+						max="64"
+						value="32"
+						step="1" />
+				</div>
+
+				<div id="control-canvas-height-wrapper">
+					<label for="control-canvas-height">Canvas height: <span id="canvas-height-label-val"></span></label>
+					<input
+						type="range"
+						id="control-canvas-height"
+						min="4"
+						max="64"
+						value="32"
+						step="1" />
+				</div>
+
+				<div id="control-canvas-color-wrapper">
+					<label for="control-canvas-color">Brush color:</label>
+					<input
+						type="color"
+						id="control-canvas-color" />
+				</div>
+
+				<div class="control-btns-wrapper">
+					<button
+						type="reset"
+						id="control-canvas-reset">
+						Reset Canvas
+					</button>
+
+					<button id="control-canvas-colorsample">Sample color - OFF</button>
+
+					<button id="control-canvas-eraser">Eraser - OFF</button>
+				</div>
+
+				<!-- MIGHT BE DIFFICULT TO IMPLEMENT: -->
+				<!-- PIXEL SIZE -->
+				<!-- RECTANGLE, CIRCLE, etc... -->
+				<!-- EDIT SAVED PROJECT - CANNOT CHANGE COLORS WHEN THE PROJECT IS RETRIEVED-->
+				<!-- UNDO/REDO - history of pixel changes -->
+
+				<!-- EASIER TASKS: -->
+				<!-- CENTER IMG ON CLICK -->
+				<!-- CONFIRMATION BOX ON VIEW SAVED BTN AS IT RESETS THE CANVAS -->
+				<!-- RENAME SAVED PROJECT -->
+				<!-- DOWNLOAD SAVED PROJECT -->
+			</div>
+
+			<div id="controls-block-2">
+				<div id="control-recent-colors-wrapper">
+					<p>Recently used colors:</p>
+					<div id="control-recent-colors"></div>
+				</div>
+			</div>
+			<div id="canvas"></div>
+		</div>
+	</body>
+</html>
