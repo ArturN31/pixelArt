@@ -273,7 +273,7 @@ const PixelArt = () => {
 	// Sets the styling of a pixel on mouse enter - color based on user chosen color
 	const pixelHoverOn = (event) => {
 		const targetPixel = event.target;
-		const color = document.getElementById('control-canvas-color').value;
+		let color = document.getElementById('control-canvas-color').value;
 
 		//sample color on = highlights pixel to sample
 		if (samplingColor) {
