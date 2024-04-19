@@ -167,7 +167,7 @@ const PixelArt = () => {
 
 	//handles sample color button functionality
 	const handleSampleColorBtn = () => {
-		const sampleColorBtn = document.getElementById('control-canvas-colorsample');
+		let sampleColorBtn = document.getElementById('control-canvas-colorsample');
 
 		//sets button state and styling on click
 		sampleColorBtn.addEventListener('click', () => {
