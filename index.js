@@ -16,12 +16,11 @@ const PixelArt = () => {
 
 			//save project to local storage if project name is not empty
 			if (projectName.value !== '') {
-				projectName.value = '';
-
 				//save canvas to local storage
-				const projectName = document.getElementById('control-canvas-name').value;
 				const canvas = document.getElementById('canvas').innerHTML;
-				localStorage.setItem(projectName, canvas);
+				localStorage.setItem(projectName.value, canvas);
+
+				projectName.value = '';
 
 				alert('Project has been saved.');
 			} else alert('Project name not found.');
@@ -226,44 +225,60 @@ const PixelArt = () => {
 	};
 	handleEraserBtnClick();
 
-	//filters out colors used in the canvas - list of recently used colors
+	// filters out colors used in the canvas - list of recently used colors
 	const handleRecentColors = (color) => {
 		const recentColors = document.getElementById('control-recent-colors');
 
-		//check if the colors element has any children
+		// check if the colors element has any children
 		if (recentColors.children.length === 0) {
-			//if no children, create a new div for the color and append it to the colors element
-			const storedColor = recentColors.appendChild(document.createElement('div'));
-			storedColor.style.backgroundColor = color;
-			storedColor.style.height = '20px';
-			storedColor.style.width = '20px';
+			createStoredColor(color);
 		} else {
-			//if there are children, convert them into an array
+			// if there are children, convert them into an array
 			const storedColorArray = Array.from(recentColors.children);
-			let isAlreadyAdded = false;
 
-			//loop through the stored color array
-			for (let i in storedColorArray) {
-				//get the pixel color and convert it from rgb to hex
-				const getColor = storedColorArray[i].style.backgroundColor;
-				const rgbColorToArray = String(getColor).replace('rgb(', '').replace(')', '').split(',');
+			// check if the current color is already in the stored color array
+			const isAlreadyAdded = storedColorArray.some((storedColorElement) => {
+				const storedColor = storedColorElement.style.backgroundColor;
+				const rgbColorToArray = storedColor.replace('rgb(', '').replace(')', '').split(',');
 				const hexColor = rgbToHex(...rgbColorToArray);
 
-				//check if the current color is already in the stored color array
-				if (hexColor === color) isAlreadyAdded = true;
-			}
+				return hexColor === color;
+			});
 
-			//if the current color is not in the stored color array, add a new node representing the recently used color
+			// if the current color is not in the stored color array, add a new node representing the recently used color
 			if (!isAlreadyAdded) {
-				const storedColor = recentColors.appendChild(document.createElement('div'));
-				storedColor.style.backgroundColor = color;
-				storedColor.style.height = '20px';
-				storedColor.style.width = '20px';
-
-				//TODO:
-				//style the recently used colors
+				createStoredColor(color);
 			}
 		}
+	};
+
+	// create stored color element with appropriate styles and event listeners
+	const createStoredColor = (color) => {
+		const storedColor = document.createElement('div');
+		storedColor.style.backgroundColor = color;
+		storedColor.style.height = '20px';
+		storedColor.style.width = '20px';
+		storedColor.style.border = `1px solid ${color}`;
+
+		// add click event listener to the stored color
+		storedColor.addEventListener('click', () => {
+			document.getElementById('control-canvas-color').value = color;
+		});
+
+		// add hover to the stored color
+		storedColor.addEventListener('mouseenter', () => {
+			storedColor.style.backgroundColor = `${color}B1`;
+			storedColor.style.border = `1px solid ${color}B1`;
+		});
+
+		// remove hover from the stored color
+		storedColor.addEventListener('mouseleave', () => {
+			storedColor.style.backgroundColor = color;
+			storedColor.style.border = `1px solid ${color}`;
+		});
+
+		// append the stored color element to the recent colors container
+		document.getElementById('control-recent-colors').appendChild(storedColor);
 	};
 
 	//--------CANVAS  &  PIXELS-------
@@ -324,8 +339,8 @@ const PixelArt = () => {
 		};
 
 		//Apply the new color to the pixel
-		targetPixel.style.backgroundColor = color;
-		targetPixel.style.borderColor = color;
+		targetPixel.style.backgroundColor = color.value;
+		targetPixel.style.borderColor = color.value;
 	};
 
 	//Sets the styling of a pixel on mouse leave - back to previous state
