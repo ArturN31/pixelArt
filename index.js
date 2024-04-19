@@ -167,7 +167,7 @@ const PixelArt = () => {
 
 	//handles sample color button functionality
 	const handleSampleColorBtn = () => {
-		let sampleColorBtn = document.getElementById('control-canvas-colorsample');
+		const sampleColorBtn = document.getElementById('control-canvas-colorsample');
 
 		//sets button state and styling on click
 		sampleColorBtn.addEventListener('click', () => {
@@ -273,18 +273,18 @@ const PixelArt = () => {
 	// Sets the styling of a pixel on mouse enter - color based on user chosen color
 	const pixelHoverOn = (event) => {
 		const targetPixel = event.target;
-		let color = document.getElementById('control-canvas-color').value;
+		let color = document.getElementById('control-canvas-color');
 
 		//sample color on = highlights pixel to sample
 		if (samplingColor) {
 			//get pixel color and convert it from rgb to hex
-			const getColor = targetPixel.style.backgroundColor;
-			const rgbColorToArray = String(getColor).replace('rgb(', '').replace(')', '').split(',');
+			const getColor = getComputedStyle(targetPixel).backgroundColor;
+			const rgbColorToArray = getColor.match(/\d+/g);
 			const hexColor = rgbToHex(...rgbColorToArray);
 
 			//trigger on pixel click
 			targetPixel.addEventListener('click', () => {
-				color = hexColor; //change color picker value
+				color.value = hexColor; //change color picker value
 				samplingColor = false; //turn of color sampling
 				const sampleColorBtn = document.getElementById('control-canvas-colorsample');
 				sampleColorBtn.innerHTML = 'Sample color - OFF';
